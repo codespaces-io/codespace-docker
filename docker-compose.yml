@@ -1,0 +1,24 @@
+version: '2'
+
+networks:
+  codespace:
+    driver: bridge
+
+services:
+  docker:
+    image: schoolofdevops/docker-controller:v1.0
+    ports:
+      - "8000:8000"
+      - "2222:22"
+      - "80:80"
+    environment:
+      CODEBOX_USERNAME: devops
+      CODEBOX_PASSWORD: codespaces
+      JAVA_ARGS: "-Xms256m -Xmx256m -XX:MaxPermSize=256m"
+    volumes:
+      - /control:/workspace
+    networks:
+      - codespace
+    container_name: docker
+    domainname: schoolofdevops.com
+    hostname: docker
