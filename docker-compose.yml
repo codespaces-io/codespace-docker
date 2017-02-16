@@ -6,20 +6,16 @@ networks:
 
 services:
   docker:
-    image: schoolofdevops/docker-controller:v1.0
+    image: docker-controller
     ports:
       - "8000:8000"
-      - "2222:22"
       - "80:80"
     environment:
-      CODEBOX_USERNAME: devops
-      CODEBOX_PASSWORD: codespaces
       JAVA_ARGS: "-Xms256m -Xmx256m -XX:MaxPermSize=256m"
     volumes:
       - /control:/workspace
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - codespace
+    network_mode: host
     container_name: docker
-    domainname: schoolofdevops.com
+    domainname: codespaces.io
     hostname: docker
