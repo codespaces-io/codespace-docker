@@ -19,3 +19,4 @@ services:
     container_name: docker
     domainname: codespaces.io
     hostname: docker
+    restart: always
